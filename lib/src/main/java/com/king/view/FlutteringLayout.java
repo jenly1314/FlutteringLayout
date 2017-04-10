@@ -210,7 +210,7 @@ public class FlutteringLayout extends RelativeLayout {
                 return pointF;
             }
             //起点和终点
-        }, new PointF(mWidth/2,mHeight - target.getMeasuredHeight()),new PointF(mRandom.nextInt(mWidth),0));
+        }, new PointF((mWidth-target.getMeasuredWidth())/2,mHeight - target.getMeasuredHeight()),new PointF(mRandom.nextInt(mWidth),0));
 
         valueAnimator.setInterpolator(randomInterpolator());
 
