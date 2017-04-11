@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.king.view.FlutteringLayout;
+import com.king.view.flutteringlayout.FlutteringLayout;
 
 public class MainActivity extends AppCompatActivity {
 

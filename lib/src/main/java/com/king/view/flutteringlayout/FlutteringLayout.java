@@ -22,7 +22,7 @@
      FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
      DEALINGS IN THE SOFTWARE.
  */
-package com.king.view;
+package com.king.view.flutteringlayout;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -38,6 +38,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
@@ -96,6 +97,13 @@ public class FlutteringLayout extends RelativeLayout {
 
     private LayoutParams mParams;
 
+    /**
+     * 是否是相同大小（如果是则只计算一次）
+     */
+    private boolean mIsSameSize = true;
+
+    private PointF mStartPointF;
+
     public FlutteringLayout(@NonNull Context context) {
         this(context,null);
     }
@@ -113,14 +121,17 @@ public class FlutteringLayout extends RelativeLayout {
 
         mRandom = new Random();
 
+        mStartPointF = new PointF();
+
         mParams = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
         mParams.addRule(ALIGN_PARENT_BOTTOM,TRUE);
         mParams.addRule(CENTER_HORIZONTAL,TRUE);
 
         TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.FlutteringLayout);
-        mEnterDuration = a.getInt(R.styleable.FlutteringLayout_enterDuration,mEnterDuration);
+        mEnterDuration = a.getInt(R.styleable.FlutteringLayout_enter_duration,mEnterDuration);
         mDuration = a.getInt(R.styleable.FlutteringLayout_duration,mDuration);
         mScale = a.getFloat(R.styleable.FlutteringLayout_scale,mScale);
+        mIsSameSize = a.getBoolean(R.styleable.FlutteringLayout_same_size,mIsSameSize);
 
         a.recycle();
 
@@ -141,8 +152,9 @@ public class FlutteringLayout extends RelativeLayout {
      */
     public void addHeart(){
 
-        View iv = getHeartView(randomHeartResource());
+        ImageView iv = getHeartView(randomHeartResource());
         addView(iv);
+        updateStartPointF(iv);
 
         Animator animator = getAnimator(iv);
         animator.addListener(new EndAnimatorListener(iv));
@@ -210,7 +222,7 @@ public class FlutteringLayout extends RelativeLayout {
                 return pointF;
             }
             //起点和终点
-        }, new PointF((mWidth-target.getMeasuredWidth())/2,mHeight - target.getMeasuredHeight()),new PointF(mRandom.nextInt(mWidth),0));
+        }, mStartPointF , new PointF(mRandom.nextInt(mWidth),0));
 
         valueAnimator.setInterpolator(randomInterpolator());
 
@@ -238,6 +250,33 @@ public class FlutteringLayout extends RelativeLayout {
         return animatorSet;
 
     }
+
+    /**
+     * 测量
+     * @param target
+     */
+    private void makeMeasureSpec(View target){
+        int spec = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+        target.measure(spec,spec);
+    }
+
+    /**
+     * 起点
+     * @param target
+     * @return
+     */
+    private void updateStartPointF(View target){
+
+        if(mStartPointF.x == 0 || mStartPointF.y == 0 || !mIsSameSize){
+            makeMeasureSpec(target);
+            int width = target.getMeasuredWidth();
+            int height = target.getMeasuredHeight();
+            mStartPointF.x = (mWidth + getPaddingLeft() - getPaddingRight() - width)/2;
+            mStartPointF.y = mHeight + getPaddingTop() - getPaddingBottom() - height;
+
+        }
+    }
+
 
     /**
      * 随机贝塞尔曲线中间的点
@@ -314,6 +353,14 @@ public class FlutteringLayout extends RelativeLayout {
 
     public LayoutParams getHeartLayoutParams(){
         return mParams;
+    }
+
+    public boolean isSameSize() {
+        return mIsSameSize;
+    }
+
+    public void setSameSize(boolean isSameSize) {
+        this.mIsSameSize = isSameSize;
     }
 
     private class EndAnimatorListener extends AnimatorListenerAdapter {

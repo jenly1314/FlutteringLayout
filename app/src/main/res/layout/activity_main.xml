@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.king.fluttering.MainActivity">
 
-    <com.king.view.FlutteringLayout
+    <com.king.view.flutteringlayout.FlutteringLayout
         android:id="@+id/flutteringLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +21,6 @@
             android:clickable="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
-    </com.king.view.FlutteringLayout>
+    </com.king.view.flutteringlayout.FlutteringLayout>
 
 </android.support.constraint.ConstraintLayout>

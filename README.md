@@ -16,17 +16,17 @@ FlutteringLayout for Android 一个直播间点赞桃心飘动效果的控件。
 <dependency>
   <groupId>com.king.view</groupId>
   <artifactId>flutteringlayout</artifactId>
-  <version>1.0</version>
+  <version>1.1.0</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```
-compile 'com.king.view:flutteringlayout:1.0'
+compile 'com.king.view:flutteringlayout:1.1.0'
 ```
 ### Lvy:
 ```
-<dependency org='com.king.view' name='flutteringlayout' rev='1.0'>
+<dependency org='com.king.view' name='flutteringlayout' rev='1.1.0'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -35,13 +35,13 @@ compile 'com.king.view:flutteringlayout:1.0'
 
 布局
 ```Xml
-    <com.king.view.FlutteringLayout
+    <com.king.view.flutteringlayout.FlutteringLayout
         android:id="@+id/flutteringLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         app:duration="3000"
-        app:enterDuration="300"
+        app:enter_duration="300"
         app:scale="1.0"/>
 ```
 
