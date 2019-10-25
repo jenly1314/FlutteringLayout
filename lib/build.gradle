@@ -1,19 +1,20 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+apply from: 'bintray.gradle'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+
+    compileSdkVersion build_versions.compileSdk
+    buildToolsVersion build_versions.buildTools
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+        versionCode app_version.versionCode
+        versionName app_version.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -23,25 +24,16 @@ android {
 
     lintOptions {
         abortOnError false
+        warning 'InvalidPackage'
     }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    provided 'com.android.support:appcompat-v7:25.3.0'
-    testCompile 'junit:junit:4.12'
-}
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
 
 
-//添加
-publish {
-    userOrg = 'jenly'//bintray.com用户名
-    groupId = 'com.king.view'//jcenter上的路径
-    artifactId = 'flutteringlayout'//项目名称
-    publishVersion = '1.1.0'//版本号
-    desc = 'FlutteringLayout for Android'//描述
-    website = 'https://github.com/jenly1314/FlutteringLayout'//网站
 }

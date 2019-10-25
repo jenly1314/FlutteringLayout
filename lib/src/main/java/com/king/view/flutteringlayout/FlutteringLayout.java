@@ -33,12 +33,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PointF;
-import android.support.annotation.AttrRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
@@ -104,15 +99,15 @@ public class FlutteringLayout extends RelativeLayout {
 
     private PointF mStartPointF;
 
-    public FlutteringLayout(@NonNull Context context) {
+    public FlutteringLayout(Context context) {
         this(context,null);
     }
 
-    public FlutteringLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FlutteringLayout(Context context,AttributeSet attrs) {
         this(context, attrs,0);
     }
 
-    public FlutteringLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public FlutteringLayout(Context context,AttributeSet attrs,int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context,attrs);
     }
@@ -167,11 +162,19 @@ public class FlutteringLayout extends RelativeLayout {
      * @param resId
      * @return
      */
-    private ImageView getHeartView(@DrawableRes int resId){
+    private ImageView getHeartView(int resId){
         ImageView iv = new ImageView(getContext());
         iv.setLayoutParams(mParams);
         iv.setImageResource(resId);
         return iv;
+    }
+
+    /**
+     * 设置布局配置
+     * @param params
+     */
+    public void setLayoutParams(LayoutParams params){
+        this.mParams = params;
     }
 
 
