@@ -54,11 +54,8 @@ flutteringlayout.addHeart();
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/FlutteringLayout/latest/javadoc/)
 
-## 相关推荐
 
-#### [GiftSurfaceView](https://github.com/jenly1314/GiftSurfaceView) 一个用于直播间送礼物拼图案动画控件
-
-## 版本记录
+## 版本日志
 
 #### v1.1.1：2019-10-25
 *  移除support依赖
