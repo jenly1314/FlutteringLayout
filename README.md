@@ -54,19 +54,6 @@ flutteringlayout.addHeart();
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/FlutteringLayout/latest/javadoc/)
 
-
-## 版本日志
-
-#### v1.1.1：2019-10-25
-*  移除support依赖
-*  升级至Gradle至v5.4.1
-
-#### v1.1.0：2017-4-11
-*  优化Heart起点位置
-
-#### v1.0：2017-4-10
-*  FlutteringLayout初始版本
-
 ## 相关推荐
 - [GiftSurfaceView](https://github.com/jenly1314/GiftSurfaceView) 一个适用于直播间送礼物拼图案的动画控件。
 - [SpinCounterView](https://github.com/jenly1314/SpinCounterView) 一个类似码表变化的旋转计数器动画控件。
@@ -80,6 +67,18 @@ flutteringlayout.addHeart();
 - [ArcSeekBar](https://github.com/jenly1314/ArcSeekBar) 一个弧形的拖动条进度控件，配置参数完全可定制化。
 - [DrawBoard](https://github.com/jenly1314/DrawBoard) 一个自定义View实现的画板；方便对图片进行编辑和各种涂鸦相关操作。
 - [compose-component](https://github.com/jenly1314/compose-component) 一个Jetpack Compose的组件库；主要提供了一些小组件，便于快速使用。
+
+## 版本日志
+
+#### v1.1.1：2019-10-25
+*  移除support依赖
+*  升级至Gradle至v5.4.1
+
+#### v1.1.0：2017-4-11
+*  优化Heart起点位置
+
+#### v1.0：2017-4-10
+*  FlutteringLayout初始版本
 
 ---
 
